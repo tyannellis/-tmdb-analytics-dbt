@@ -37,6 +37,11 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   tmdb_project:
-    # Applies to all files under models/example/
     staging:
       +materialized: table
+    Marts:
+      Core:
+      +materialized: table
+      intermediate: 
+        +materialized: table
+
