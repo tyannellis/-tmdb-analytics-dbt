@@ -39,8 +39,8 @@ models:
   tmdb_project:
     staging:
       +materialized: table
-    Marts:
-      Core:
+    marts:
+      core:
       +materialized: table
       intermediate: 
         +materialized: table
