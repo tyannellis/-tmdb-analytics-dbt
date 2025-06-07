@@ -1,13 +1,15 @@
 with show_creators as (
-    select * from {{ref("stg_tmdb_project__creators")}}
+    select
+    tv_show_id,
+    creator_id
+     from {{ref("stg_tmdb_project__creators")}}
 ),
 
 distinct_show_creators as(
 
     select distinct 
     tv_show_id,
-    creator_id,
-    creator_name
+    creator_id
     from show_creators
 )
 

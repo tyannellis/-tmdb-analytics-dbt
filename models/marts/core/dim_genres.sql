@@ -1,6 +1,9 @@
 with genres as (
 
-    select * from {{ref("stg_tmdb_project__genres")}}
+    select 
+genre_id,
+genre_name 
+from {{ref("stg_tmdb_project__genres")}}
 ),
 
 distinct_genres as (

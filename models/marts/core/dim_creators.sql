@@ -1,5 +1,8 @@
 with creators as (
-    select * from {{ref("stg_tmdb_project__creators")}}
+    select
+    creator_id,
+    creator_name
+    from {{ref("stg_tmdb_project__creators")}}
 ),
 
 distinct_creators as (
