@@ -16,14 +16,17 @@ with base as (
    from {{ref("stg_tmdb_project__trending_tv_shows")}} 
 )
 
-select
-distinct 
+select 
     start_of_week_date as trending_week_start_date,
     tv_show_id,
     lifetime_vote_average,
     number_of_episodes,
     lifetime_vote_count
     from base
-where start_of_week_date > (select max(start_of_week_date) from {{ this }})
- 
+    where 
+    {% if is_incremental() %}
+        start_of_week_date > (select max(trending_week_start_date) from {{ this }})
+    {% else %}
+        1=1
+    {% endif %} 
 
