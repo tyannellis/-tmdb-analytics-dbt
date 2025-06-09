@@ -11,7 +11,6 @@ with base as (
     start_of_week_date,
     tv_show_id,
     lifetime_vote_average,
-    number_of_episodes,
     lifetime_vote_count
    from {{ref("stg_tmdb_project__trending_tv_shows")}} 
 )
@@ -20,7 +19,6 @@ select
     start_of_week_date as trending_week_start_date,
     tv_show_id,
     lifetime_vote_average,
-    number_of_episodes,
     lifetime_vote_count
     from base
     where 
