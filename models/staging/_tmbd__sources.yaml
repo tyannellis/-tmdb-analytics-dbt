@@ -1,0 +1,15 @@
+version: 2
+
+sources:
+  - name: TMDB_PROJECT
+    database: TMDB_PROJECT  
+    schema: raw  
+    tables:
+      - name: genres
+       
+      - name: creators 
+        
+      - name: networks
+        
+      - name: spoken_language
+      - name: tv_show
