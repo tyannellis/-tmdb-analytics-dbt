@@ -1,3 +1,5 @@
+
+
 with creators as (
     select
     creator_id,
