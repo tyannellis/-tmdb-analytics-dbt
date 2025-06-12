@@ -3,6 +3,7 @@
     unique_key=['tv_show_id', 'start_of_week_date']
 ) }}
 
+-- Modeling showing weekly trend of all shows and networks. Shows can appear on multiple networks
 
 with weekly_show_networks_availability as (
 select 
@@ -17,8 +18,8 @@ distinct_weekly_show_networks_availability as (
 select 
 distinct 
 tv_show_id,
-network_id,
 network_name,
+network_id,
 start_of_week_date
 from weekly_show_networks_availability 
 where 

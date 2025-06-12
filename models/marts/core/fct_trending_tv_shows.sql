@@ -2,8 +2,7 @@
     materialized='incremental',
     unique_key=['tv_show_id', 'trending_week_start_date']
 ) }}
-
-
+-- model shows weekly view of trending tv shows and metrics 
 
 with base as (
 
