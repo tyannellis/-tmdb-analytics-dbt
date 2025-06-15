@@ -1,0 +1,146 @@
+version: 2
+
+models:
+
+  ### 📊 FACT MODELS
+
+  - name: fct_trending_tv_shows
+    description: "Fact table tracking trending TV shows each week."
+    columns:
+      - name: tv_show_id
+        description: "Primary key for the TV show."
+        tests: 
+          - not_null
+      - name: trending_week_start_date
+        description: "Start of the week when the show was trending."
+        tests:
+           - not_null
+          
+  - name: fct_show_network_availability
+    description: "Fact table showing network availability of trending shows by week."
+    columns:
+      - name: tv_show_id
+        description: "Foreign key to the TV show."
+        tests:
+          - not_null
+      - name: network_id
+        description: "ID of the streaming network."
+        tests:
+          - not_null
+      - name: start_of_week_date
+        description: "Week of availability."
+        tests:
+          - not_null
+
+  ### 🔗 BRIDGE MODELS
+
+  - name: int_bridge_show_creators
+    description: "Bridge table mapping shows to creators (many-to-many)."
+    columns:
+      - name: tv_show_id
+        description: "Foreign key to dim_tv_shows."
+        tests: 
+          - not_null
+      - name: creator_id
+        description: "Foreign key to dim_creators."
+        tests: 
+          - not_null
+
+  - name: int_bridge_show_genres
+    description: "Bridge table mapping shows to genres."
+    columns:
+      - name: tv_show_id
+        description: "Foreign key to dim_tv_shows."
+        tests: 
+          - not_null
+      - name: genre_id
+        description: "Foreign key to dim_genres."
+        tests: 
+          - not_null
+
+  - name: int_bridge_show_spoken_languages
+    description: "Bridge table for shows and their spoken languages."
+    columns:
+      - name: tv_show_id
+        description: "Foreign key to dim_tv_shows."
+        tests: 
+          - not_null
+      - name: language_name
+        description: "code of language spoken in tv show"
+        tests: 
+          - not_null
+
+  ### 🧱 DIMENSION MODELS
+
+  - name: dim_tv_shows
+    description: "Dimension table for TV shows with basic attributes."
+    columns:
+      - name: tv_show_id
+        description: "Primary key for the TV show."
+        tests:
+          - not_null
+         
+
+  - name: dim_creators
+    description: "Dimension table for TV show creators."
+    columns:
+      - name: creator_id
+        description: "Unique ID for the creator."
+        tests:
+          - not_null
+          - unique
+
+  - name: dim_genres
+    description: "Dimension table for genres available in the dataset."
+    columns:
+      - name: genre_id
+        description: "Unique ID for the genre."
+        tests:
+          - not_null
+          - unique
+
+  - name: dim_networks
+    description: "Dimension table for TV networks."
+    columns:
+      - name: network_id
+        description: "Unique network ID."
+        tests:
+          - not_null
+          - unique
+
+  
+
+  ### 📈 REPORTING MODELS
+
+  - name: reporting_genre_insights_summary
+    description: "Reporting model for genre insights"
+    columns:
+      - name: genre_name
+        description: "genre name of report"
+        tests:
+          - not_null
+      - name: trending_week_start_date
+        description: "Week for the top trending rank."
+      
+
+  - name: reporting_network_insights_summary
+    description: "Report of network trending performance "
+    columns:
+      - name: trending_week_start_date
+        description: "monday of the trending week"
+      - name: network_name
+        description: "name of network or streaming platform"
+        tests:
+          - not_null
+      
+
+  - name: reporting__weekly_tv_show_performance
+    description: "Reporting dataset showing trending shows and voting metrics"
+    columns:
+      - name: trending_week_start_date
+        description: "Start of the reporting week."
+      - name: tv_show_id
+        description: "id of tv show"
+        tests:
+          - not_null
+          

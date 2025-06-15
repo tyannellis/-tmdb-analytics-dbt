@@ -1,0 +1,86 @@
+version: 2
+
+sources:
+  - name: TMDB_PROJECT
+    database: TMDB_PROJECT  
+    schema: raw  
+    tables:
+      - name: genres
+        description: genre id and names of trending show from tmdb api 
+        columns:
+        - name: genre_id
+          description: Unique identifier for each genre
+          tests:
+          - not_null
+      - name: creators 
+        description: creator id and names of trending show from tmdb api 
+        columns:
+        - name: creator_id
+          description: Unique identifier for each creator
+          tests:
+            - not_null
+      - name: networks
+        description: network id and names of trending show from tmdb api 
+        columns:
+        - name: network_id
+          description: Unique identifier for each network
+          tests:
+            - not_null
+              
+      - name: spoken_language
+        description: language id and names of trending show from tmdb api 
+        columns:
+        - name: Language_name
+          description: ISO 639-1 code representing the language
+          tests:
+            - not_null
+
+
+      - name: tv_show
+        description: Raw TV show data from TMDB API
+        columns:
+          - name: tv_show_id
+            description: Unique identifier for each show
+            tests:
+              - not_null
+
+models:
+  - name: stg_tmdb_project__trending_tv_shows
+    description: Staging model for raw TV show data from TMDB
+    columns:
+      - name: tv_show_id
+        description: Unique identifier for each show
+        tests:
+          - not_null
+
+  - name: stg_tmdb_project__genres
+    description: Staging model for raw genre data
+    columns:
+      - name: genre_id
+        description: Unique identifier for each genre
+        tests:
+          - not_null
+
+  - name: stg_tmdb_project__networks
+    description: Staging model for raw network data
+    columns:
+      - name: network_id
+        description: Unique identifier for each network
+        tests:
+          - not_null
+
+  - name: stg_tmdb_project__creators
+    description: Staging model for raw creator data
+    columns:
+      - name: creator_id
+        description: Unique identifier for each creator
+        tests:
+          - not_null
+
+  - name: stg_tmdb_project__spoken_languages
+    description: Staging model for raw spoken language data
+    columns:
+      - name: Language_name
+        description: ISO 639-1 code representing the language
+        tests:
+          - not_null

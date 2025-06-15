@@ -1,3 +1,5 @@
+
+
 with networks as (
     select 
 network_id,
