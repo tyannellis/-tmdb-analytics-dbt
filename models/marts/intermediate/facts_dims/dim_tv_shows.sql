@@ -8,11 +8,13 @@ with tv_show_source as (
 
 select
         tv_show_id,
-        original_name,
+        case when remade_show_rank > 1 then original_name || ' (' || year(FIRST_EPISODE_AIR_DATE) || ')'  else original_name end as original_name,
+        case when remade_show_rank > 1 then localized_name || ' (' || year(FIRST_EPISODE_AIR_DATE) || ')' else localized_name end as localized_name,
         number_of_episodes,
         number_of_seasons,
         FIRST_EPISODE_AIR_DATE,
         ORIGINAL_LANGUAGE_CODE,
+        language_name as ORIGINAL_LANGUAGE_name,
         tv_show_status,
         tv_show_type,
         current_date as record_start_date,
@@ -26,11 +28,11 @@ select
         ]) }} as surrogate_key
 
 from (select *,
-row_number() over (
-                   partition by tv_show_id 
-                   order by start_of_week_date desc
-               ) as row_num
-from {{ref("stg_tmdb_project__trending_tv_shows")}})
+row_number() over (partition by tv_show_id order by start_of_week_date desc) as row_num,
+row_number() over (partition by original_name order by FIRST_EPISODE_AIR_DATE) as remade_show_rank
+from {{ref("stg_tmdb_project__trending_tv_shows")}}) as tv_base
+left join {{ref('language_code')}}
+using (ORIGINAL_LANGUAGE_CODE)
 where row_num = 1
 
 ),
@@ -62,10 +64,12 @@ expired_records as (
     select 
         tv_show_id,
         original_name,
+        localized_name,
         number_of_episodes,
         number_of_seasons,
         FIRST_EPISODE_AIR_DATE,
         ORIGINAL_LANGUAGE_CODE,
+        ORIGINAL_LANGUAGE_name,
         tv_show_status,
         tv_show_type,
         record_start_date, 
