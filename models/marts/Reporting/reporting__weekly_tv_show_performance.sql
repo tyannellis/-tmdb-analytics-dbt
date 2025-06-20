@@ -33,6 +33,8 @@ number_of_episodes,
 number_of_seasons,
 first_episode_air_date,
 original_language_code,
+ORIGINAL_LANGUAGE_name,
+localized_name,
 tv_show_status,
 tv_show_type
 from {{ref("dim_tv_shows")}}
@@ -45,10 +47,12 @@ trending.lifetime_vote_average,
 trending.lifetime_vote_count,
 trending.surrogate_key,
 dim.original_name,
+dim.localized_name,
 dim.number_of_episodes,
 dim.number_of_seasons,
 dim.first_episode_air_date,
 dim.original_language_code,
+dim.ORIGINAL_LANGUAGE_name,
 dim.tv_show_status,
 dim.tv_show_type
 from trending_tv_show_base as trending
