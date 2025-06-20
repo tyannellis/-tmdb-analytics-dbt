@@ -143,4 +143,13 @@ models:
         description: "id of tv show"
         tests:
           - not_null
+  - name: reporting_spoken_languages
+    description: "Reporting dataset showing trending shows and voting metrics"
+    columns:
+      - name: language_name
+        description: "English name assigned to language"
+      - name: tv_show_id
+        tests:
+          - not_null
+          - unique
           
