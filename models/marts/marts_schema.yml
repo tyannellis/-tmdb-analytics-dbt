@@ -11,10 +11,21 @@ models:
         description: "Primary key for the TV show."
         tests: 
           - not_null
+          - unique
+          
       - name: trending_week_start_date
         description: "Start of the week when the show was trending."
         tests:
            - not_null
+      - name: lifetime_vote_count
+        description: "Total votes a tv show has received since it first air date "
+        tests: 
+          - not_null
+      - name: lifetime_vote_average
+        description: 'Average rating a tv show  has received since it first air date '
+        tests:
+          - not_null
+          - vote_average_out_of_range
           
   - name: fct_show_network_availability
     description: "Fact table showing network availability of trending shows by week."
@@ -27,8 +38,13 @@ models:
         description: "ID of the streaming network."
         tests:
           - not_null
+      - name: network_name
+        description: 'Name of streaming network'
+        tests:
+          - not_null
+
       - name: start_of_week_date
-        description: "Week of availability."
+        description: "Monday of the week where show is available on the nnetwork."
         tests:
           - not_null
 
