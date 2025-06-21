@@ -25,7 +25,7 @@ models:
         description: 'Average rating a tv show  has received since it first air date '
         tests:
           - not_null
-          - rating_out_of_range_check
+          - check_vote_bounds
 
   - name: fct_show_network_availability
     description: "Fact table showing network availability of trending shows by week."
