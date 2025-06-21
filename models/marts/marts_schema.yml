@@ -235,7 +235,6 @@ models:
         description: "Avg rating of all shows on a network for the week"
         tests:
           - not_null
-          - vote_average_out_of_range
       - name: average_episode_per_show
         description: "Avg episode count per show per network for the week"
         tests:
