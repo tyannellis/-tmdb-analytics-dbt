@@ -61,7 +61,6 @@ models:
         description: "Foreign key to dim_creators."
         tests: 
           - not_null
-          - unique
           
 
   - name: int_bridge_show_genres
@@ -75,7 +74,6 @@ models:
         description: "Foreign key to dim_genres."
         tests: 
           - not_null
-          - unique
 
   - name: int_bridge_show_spoken_languages
     description: "Bridge table for shows and their spoken languages."
@@ -88,7 +86,6 @@ models:
         description: "code of language spoken in tv show"
         tests: 
           - not_null
-          - unique
           
 
   ### 🧱 DIMENSION MODELS
@@ -104,11 +101,11 @@ models:
         description: "Original name of show in its original language"
         tests: 
           - not_null
-      - name: loacalized_name
+      - name: localized_name
         description: 'English Translation of show name'
         tests:
           - not_null
-      - name: number_of_episode
+      - name: number_of_episodes
         description: "current episode count of tv show"
         tests: 
           - not_null
@@ -238,6 +235,7 @@ models:
         description: "Avg rating of all shows on a network for the week"
         tests:
           - not_null
+          - vote_average_out_of_range
       - name: average_episode_per_show
         description: "Avg episode count per show per network for the week"
         tests:
@@ -269,11 +267,11 @@ models:
         description: "Original name of show in its original language"
         tests: 
           - not_null
-      - name: loacalized_name
+      - name: localized_name
         description: 'English Translation of show name'
         tests:
           - not_null
-      - name: number_of_episode
+      - name: number_of_episodes
         description: "current episode count of tv show"
         tests: 
           - not_null
@@ -318,11 +316,7 @@ models:
     columns:
       - name: language_name
         description: "English name assigned to language"
-      - name: tv_show_id
-        tests:
-          - not_null
-          - unique
-
+      
       - name: number_of_tv_shows
         description: "Total Votes Of all The Tv Shows Written in that language"
         tests:
@@ -331,5 +325,7 @@ models:
         description: "Percent of Shows written in the language with an average rating 8.0"
         tests: 
           - not_null
+      - name: average_vote_per_language
+        description: "Average rating of all shows written in that language"
 
           
