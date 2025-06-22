@@ -6,12 +6,28 @@ sources:
     schema: raw  
     tables:
       - name: genres
-        description: genre id and names of trending show from tmdb api 
+        description: 'genre id and names of trending show from tmdb api' 
         columns:
         - name: genre_id
           description: Unique identifier for each genre
           tests:
           - not_null
+        - name: genre_name
+          description: 'genre name associated with genre id'
+          tests: 
+            - not_null
+        - name:  tv_show_id
+          description: 'Unique key representing a tv show'
+          tests:
+            - not_null
+        -  name: load_date
+           description: 'date the source data was loaded into the warehouse'
+           tests:
+             - not_null
+        - name: start_of_week_date
+          description: "Monday of the week corresponding to the load date."
+            
+      
       - name: creators 
         description: creator id and names of trending show from tmdb api 
         columns:
@@ -19,11 +35,40 @@ sources:
           description: Unique identifier for each creator
           tests:
             - not_null
+        - name: creator_name
+          description: Name of the creator
+          tests:
+            - not_null
+        - name: load_date
+          description: 'date the source data was loaded into the warehouse'
+          tests:
+             - not_null
+        - name: start_of_week_date
+          description: "Monday of the week corresponding to the load date."
+        - name: tv_show_id
+          description: 'Unique key representing a tv show'
+          tests:
+            - not_null
+          
       - name: networks
         description: network id and names of trending show from tmdb api 
         columns:
         - name: network_id
           description: Unique identifier for each network
+          tests:
+            - not_null
+        - name: network_name
+          description: name of the streaming network
+          tests:
+            - not_null
+        - name: load_date
+          description: 'date the source data was loaded into the warehouse'
+          tests:
+             - not_null
+        - name: start_of_week_date
+          description: "Monday of the week corresponding to the load date."
+        - name:  tv_show_id
+          description: 'Unique key representing a tv show'
           tests:
             - not_null
               
@@ -34,53 +79,84 @@ sources:
           description: ISO 639-1 code representing the language
           tests:
             - not_null
+        - name: load_date
+          description: 'date the source data was loaded into the warehouse'
+          tests:
+             - not_null
+        - name: start_of_week_date
+          description: "Monday of the week corresponding to the load date."
+        - name:  tv_show_id
+          description: 'Unique key representing a tv show'
+          tests:
+            - not_null
 
 
       - name: tv_show
         description: Raw TV show data from TMDB API
         columns:
-          - name: tv_show_id
-            description: Unique identifier for each show
-            tests:
-              - not_null
+        - name: tv_show_id
+          description: "Primary key for the TV show."
+          tests: 
+          - not_null
+          - unique
+          
+      - name: trending_week_start_date
+        description: "Start of the week when the show was trending."
+        tests:
+           - not_null
+      - name: lifetime_vote_count
+        description: "Total votes a tv show has received since it first air date "
+        tests: 
+          - not_null
+      - name: lifetime_vote_average
+        description: 'Average rating a tv show  has received since it first air date '
+        tests:
+          - not_null
+      - name: original_name
+        description: "Original name of show in its original language"
+        tests: 
+          - not_null
+      - name: localized_name
+        description: 'English Translation of show name'
+        tests:
+          - not_null
+      - name: number_of_episodes
+        description: "current episode count of tv show"
+        tests: 
+          - not_null
+      - name: number_of_seasons
+        description: "current season count of tv show"
+        tests:
+          - not_null
+      - name: FIRST_EPISODE_AIR_DATE
+        description: "Air date of first episode of tv show"
+        tests:
+          - not_null
+      - name: ORIGINAL_LANGUAGE_name
+        description: 'Name of the original language a show is written in'
+        tests:
+          - not_null
+      - name: tv_show_status
+        description: "A tv show's status as of the start of the trending week"
+        tests:
+           - accepted_values:
+              values: ['Ended','Returning Series']
+      - name: tv_show_type
+        description: " Tv Show type ex: scripted, reality,  miniseries"
 
 models:
   - name: stg_tmdb_project__trending_tv_shows
-    description: Staging model for raw TV show data from TMDB
-    columns:
-      - name: tv_show_id
-        description: Unique identifier for each show
-        tests:
-          - not_null
-
+    description: Staging model directly from source TV show data from TMDB
+    
   - name: stg_tmdb_project__genres
-    description: Staging model for raw genre data
-    columns:
-      - name: genre_id
-        description: Unique identifier for each genre
-        tests:
-          - not_null
-
+    description: Staging model directly from source genre data
+    
   - name: stg_tmdb_project__networks
-    description: Staging model for raw network data
-    columns:
-      - name: network_id
-        description: Unique identifier for each network
-        tests:
-          - not_null
-
+    description: Staging model directly from source network data
+    
   - name: stg_tmdb_project__creators
-    description: Staging model for raw creator data
-    columns:
-      - name: creator_id
-        description: Unique identifier for each creator
-        tests:
-          - not_null
-
+    description: Staging model directly from source creator data
+    
   - name: stg_tmdb_project__spoken_languages
-    description: Staging model for raw spoken language data
-    columns:
-      - name: Language_name
-        description: ISO 639-1 code representing the language
-        tests:
-          - not_null
+    description: Staging model directly from source spoken language data
+    
