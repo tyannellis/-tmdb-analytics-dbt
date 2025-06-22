@@ -15,7 +15,7 @@ from snowflake.connector.pandas_tools import write_pandas
 
 load_dotenv()
 # Load API key from .env
-API_KEY  = os.getenv("API_KEY")
+API_KEY  = os.environ("API_KEY")
 LANGUAGE = "en-US"
 BASE_URL = "https://api.themoviedb.org/3"
 params = {"api_key": API_KEY}
@@ -23,12 +23,12 @@ params = {"api_key": API_KEY}
 # Load snowflake credentials from .env
 
 conn = snowflake.connector.connect(
-    user= os.getenv("user"),
-    password=os.getenv("password"),
-    account=os.getenv("account"),
-    warehouse=os.getenv("warehouse"),
-    database=os.getenv("database"),
-    schema=os.getenv("schema")
+    user= os.environ["user"],
+    password=os.environ["password"],
+    account=os.environ["account"],
+    warehouse=os.environ["warehouse"],
+    database=os.environ["database"],
+    schema=os.environ["schema"]
 )
 
 
