@@ -8,15 +8,15 @@ jobs:
     runs-on: ubuntu-22.04
 
     env:  # Inject secrets as environment variables
-      user: ${{secrets.user}}
-      password: ${{secrets.password}}
-      account: ${{secrets.account}}
-      API_KEY: ${{secrets.API_KEY}}
-      API_TOKEN: ${{secrets.API_TOKEN}}
-      warehouse: ${{secrets.warehouse}}
-      database: ${{secrets.database}}
-      schema: ${{secrets.schema}}
-      schema_reporting: ${{secrets.schema_reporting}} 
+      user: ${{ secrets.user }}
+      password: ${{ secrets.password }}
+      account: ${{ secrets.account }}
+      API_KEY: ${{ secrets.API_KEY }}
+      API_TOKEN: ${{ secrets.API_TOKEN }}
+      warehouse: ${{ secrets.warehouse }}
+      database: ${{ secrets.database }}
+      schema: ${{ secrets.schema }}
+      schema_reporting: ${{ secrets.schema_reporting }} 
 
     steps:
       - name: Checkout repo
