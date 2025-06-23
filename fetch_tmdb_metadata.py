@@ -12,8 +12,6 @@ import time
 import snowflake.connector
 from snowflake.connector.pandas_tools import write_pandas
 
-for var in ["user", "password", "account", "warehouse", "database", "schema", "API_KEY", "API_TOKEN", "schema_reporting"]:
-    print(f"{var} →", "✅" if os.environ.get(var) else "❌ MISSING")
 
 # Load API key from .env
 API_KEY  = os.environ["API_KEY"]
@@ -24,12 +22,12 @@ params = {"api_key": API_KEY}
 # Load snowflake credentials from .env
 
 conn = snowflake.connector.connect(
-    user= os.environ["user"],
-    password=os.environ["password"],
-    account=os.environ["account"],
-    warehouse=os.environ["warehouse"],
-    database=os.environ["database"],
-    schema=os.environ["schema"]
+    user= os.environ["USER"],
+    password=os.environ["PASSWORD"],
+    account=os.environ["ACCOUNT"],
+    warehouse=os.environ["WAREHOUSE"],
+    database=os.environ["DATABASE"],
+    schema=os.environ["SCHEMA"]
 )
 
 
