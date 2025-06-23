@@ -107,6 +107,7 @@ def extract_tv_show_to_df(show_metadata_list):
 )
     df = pd.DataFrame(dataframe_rows)
     df.columns = [col.upper() for col in df.columns]
+    df.drop_duplicates(inplace=True)
     return(df)
 
 
@@ -133,7 +134,7 @@ def extract_genres_to_df(show_metadata_list):
 })
     df = pd.DataFrame(dataframe_rows)
     df.columns = [col.upper() for col in df.columns]
-
+    df.drop_duplicates(inplace=True)
     return(df)
 
 
@@ -162,6 +163,7 @@ def extract_creators_to_df(show_metadata_list):
             })
     df = pd.DataFrame(dataframe_rows)
     df.columns = [col.upper() for col in df.columns]
+    df.drop_duplicates(inplace=True)
     return(df)
 
 
@@ -186,7 +188,7 @@ def extract_networks_to_df(show_metadata_list):
 })
     df = pd.DataFrame(dataframe_rows)
     df.columns = [col.upper() for col in df.columns]
-
+    df.drop_duplicates(inplace=True)
     return(df)
 
 
@@ -210,6 +212,8 @@ def extracts_spoken_languages_to_df(show_metadata_list):
 })
     df = pd.DataFrame(dataframe_rows)
     df.columns = [col.upper() for col in df.columns]
+    df.drop_duplicates(inplace=True)
+
     return(df)
 
 
