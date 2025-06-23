@@ -6,14 +6,12 @@
 import pandas as pd 
 import requests 
 import os 
-from dotenv import load_dotenv
 from datetime import datetime, timezone,timedelta
 import pyarrow
 import time
 import snowflake.connector
 from snowflake.connector.pandas_tools import write_pandas
 
-load_dotenv()
 # Load API key from .env
 API_KEY  = os.environ["API_KEY"]
 LANGUAGE = "en-US"
