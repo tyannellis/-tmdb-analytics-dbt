@@ -15,7 +15,7 @@ from snowflake.connector.pandas_tools import write_pandas
 
 load_dotenv()
 # Load API key from .env
-API_KEY  = os.environ("API_KEY")
+API_KEY  = os.environ["API_KEY"]
 LANGUAGE = "en-US"
 BASE_URL = "https://api.themoviedb.org/3"
 params = {"api_key": API_KEY}
