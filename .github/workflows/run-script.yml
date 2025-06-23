@@ -5,7 +5,7 @@ on:
 
 jobs:
   run-script:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     env:  # Inject secrets as environment variables
       user: ${{ secrets.user }}
@@ -25,7 +25,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.13.2
+          python-version: 3.11
 
       - name: Install dependencies
         run: |
@@ -34,4 +34,4 @@ jobs:
 
       - name: Run TMDB ingestion script
         run: |
-          python scripts/fetch_tmdb_metadata.py
+          python fetch_tmdb_metadata.py
