@@ -8,15 +8,15 @@ jobs:
     runs-on: ubuntu-latest
 
     env:  # Inject secrets as environment variables
-      user: ${{ secrets.SNOWFLAKE_USER }}
+      user: ${{ secrets.user }}
       password: ${{ secrets.password }}
       account: ${{ secrets.account }}
       API_KEY: ${{ secrets.API_KEY }}
       API_TOKEN: ${{ secrets.API_TOKEN }}
-      warehouse: ${{ TMDB_WH }}
-      database: ${{ TMDB_PROJECT }}
-      schema: ${{ RAW }}
-      schema_reporting: ${{ DBT_TYANNELLIS }} 
+      warehouse: ${{ secrets.warehouse }}
+      database: ${{ secrets.database }}
+      schema: ${{ secrets.schema }}
+      schema_reporting: ${{ secrets.schema_reporting }} 
 
     steps:
       - name: Checkout repo
