@@ -107,7 +107,7 @@ def extract_tv_show_to_df(show_metadata_list):
 )
     df = pd.DataFrame(dataframe_rows)
     df.columns = [col.upper() for col in df.columns]
-    df.drop_duplicates(inplace=True)
+    df.drop_duplicates(subset=["MERGE_KEY"], inplace=True)
     return(df)
 
 
@@ -129,12 +129,12 @@ def extract_genres_to_df(show_metadata_list):
                 "tv_show_id": show["id"],
                 "genre_id": genre["id"],
                 "genre_name": genre["name"],
-                "merge_key": f"{show['id']}_{genre["id"]}_{start_of_week}",
+                "merge_key": f"{show['id']}_{genre['id']}_{start_of_week}",
                 "record_load_timestamp": datetime.now(timezone.utc).replace(tzinfo=None)
 })
     df = pd.DataFrame(dataframe_rows)
     df.columns = [col.upper() for col in df.columns]
-    df.drop_duplicates(inplace=True)
+    df.drop_duplicates(subset=["MERGE_KEY"], inplace=True)
     return(df)
 
 
@@ -156,14 +156,14 @@ def extract_creators_to_df(show_metadata_list):
                 "tv_show_id": show["id"],
                 "creator_id": creator["id"],
                 "creator_name": creator["name"],
-                "merge_key": f"{show['id']}_{creator["id"]}_{start_of_week}",
+                "merge_key": f"{show['id']}_{creator['id']}_{start_of_week}",
                "record_load_timestamp": datetime.now(timezone.utc).replace(tzinfo=None)
 
 
             })
     df = pd.DataFrame(dataframe_rows)
     df.columns = [col.upper() for col in df.columns]
-    df.drop_duplicates(inplace=True)
+    df.drop_duplicates(subset=["MERGE_KEY"], inplace=True)
     return(df)
 
 
@@ -182,13 +182,13 @@ def extract_networks_to_df(show_metadata_list):
                 "tv_show_id": show["id"],
                 "network_id": network["id"],
                 "network_name": network["name"],
-                "merge_key": f"{show['id']}_{network["id"]}_{start_of_week}",
+                "merge_key": f"{show['id']}_{network['id']}_{start_of_week}",
                 "record_load_timestamp": datetime.now(timezone.utc).replace(tzinfo=None)
 
 })
     df = pd.DataFrame(dataframe_rows)
     df.columns = [col.upper() for col in df.columns]
-    df.drop_duplicates(inplace=True)
+    df.drop_duplicates(subset=["MERGE_KEY"], inplace=True)
     return(df)
 
 
@@ -206,13 +206,13 @@ def extracts_spoken_languages_to_df(show_metadata_list):
                 "week_start_date":start_of_week,
                 "tv_show_id": show["id"],
                 "language_name": languages["english_name"],
-                "merge_key": f"{show['id']}_{languages["english_name"]}_{start_of_week}",
+                "merge_key": f"{show['id']}_{languages['english_name']}_{start_of_week}",
                 "record_load_timestamp": datetime.now(timezone.utc).replace(tzinfo=None)
 
 })
     df = pd.DataFrame(dataframe_rows)
     df.columns = [col.upper() for col in df.columns]
-    df.drop_duplicates(inplace=True)
+    df.drop_duplicates(subset=["MERGE_KEY"], inplace=True)
 
     return(df)
 
