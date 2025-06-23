@@ -12,6 +12,9 @@ import time
 import snowflake.connector
 from snowflake.connector.pandas_tools import write_pandas
 
+for var in ["user", "password", "account", "warehouse", "database", "schema", "API_KEY", "API_TOKEN", "schema_reporting"]:
+    print(f"{var} →", "✅" if os.environ.get(var) else "❌ MISSING")
+
 # Load API key from .env
 API_KEY  = os.environ["API_KEY"]
 LANGUAGE = "en-US"
