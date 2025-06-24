@@ -62,7 +62,7 @@ on trending_shows_and_networks.network_name = top_interacted_show_per_network.ne
 and trending_shows_and_networks.trending_week_start_date = top_interacted_show_per_network.trending_week_start_date 
 {% if is_incremental() %}
         where trending_shows_and_networks.trending_week_start_date > (
-            coalesce(max(trending_week_start_date),  '2000-01-01')
+            select coalesce(max(trending_week_start_date),  '2000-01-01')
             from {{ this }}
         )
     {% endif %}
