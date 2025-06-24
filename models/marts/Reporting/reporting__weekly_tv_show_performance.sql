@@ -20,7 +20,7 @@ lifetime_vote_count,
 from {{ref("fct_trending_tv_shows")}}
  {% if is_incremental() %}
         where trending_week_start_date > (
-            select max(trending_week_start_date)
+            select coalesce(max(trending_week_start_date),  '2000-01-01')
             from {{ this }}
         )
     {% endif %}
