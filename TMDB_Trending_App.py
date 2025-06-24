@@ -12,12 +12,12 @@ load_dotenv()
 # creating query statement
 def run_query(query):
     conn = snowflake.connector.connect(
-        user= os.getenv("user"),
-    password=os.getenv("password"),
-    account=os.getenv("account"),
-    warehouse=os.getenv("warehouse"),
-    database=os.getenv("database"),
-    schema=os.getenv("schema_reporting")
+       user=st.secrets["user"],
+        password=st.secrets["password"],
+        account=st.secrets["account"],
+        warehouse=st.secrets["warehouse"],
+        database=st.secrets["database"],
+        schema=st.secrets["schema_reporting"]
     )
     cur = conn.cursor()
     cur.execute(query)
