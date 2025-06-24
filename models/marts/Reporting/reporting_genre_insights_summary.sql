@@ -28,7 +28,7 @@ on fact.tv_show_id = dim.tv_show_id
 where dim.is_current = true
 {% if is_incremental() %}
   and fact.trending_week_start_date > (
-    select max(trending_week_start_date)
+    select coalesce(max(trending_week_start_date),  '2000-01-01')
     from {{ this }}
   )
 {% endif %})

@@ -22,7 +22,7 @@ select
     from base
     where 
     {% if is_incremental() %}
-        start_of_week_date > (select max(trending_week_start_date) from {{ this }})
+        start_of_week_date > (select coalesce(max(trending_week_start_date),  '2000-01-01') from {{ this }})
     {% else %}
         1=1
     {% endif %} 
