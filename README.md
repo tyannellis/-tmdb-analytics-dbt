@@ -41,10 +41,12 @@ Data quality is enforced through a robust suite of dbt tests:
   
   These tests help ensure the trustworthiness of reporting layers and support downstream tools like dashboards and visualizations.
 
-##  📸 Streamlit App
+##  📸 Streamlit App 
 To demonstrate the usability of the reporting models, this project includes a lightweight Streamlit app that surfaces key metrics and trends. Each reporting model is visualized with at least one corresponding chart or table, allowing users to explore the insights interactively.
 
 The app is designed to showcase how data teams or business users might interact with these models in a real-world setting.
+
+[Click here to view the Streamlit app](https://dkwvs8u28wut2dgzdtpmgx.streamlit.app/)
 
 ## 🧠 Lessons Learned & Next Steps
 
