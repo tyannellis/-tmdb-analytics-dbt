@@ -68,3 +68,5 @@ Scalable, high-volume data ingestion pipelines
 
 Deeper use of GCP-native tools for orchestration and storage
 
+Explore Streaming Pipelines
+
